@@ -1,0 +1,1 @@
+<h2>ini halaman awal atau biasa diebut indeks</h2>
