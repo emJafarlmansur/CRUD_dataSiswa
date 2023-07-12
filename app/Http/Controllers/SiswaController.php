@@ -50,11 +50,13 @@ class SiswaController extends Controller
             'foto.mimes'=>'ekstensi foto hanya jpg, jpeg, dan png'
 
         ]);
+            $foto_file=$request->file('foto');
             $data=[
                 'nomor_induk'=>$request->input('nomor_induk'),
                 'nama'=>$request->input('nama'),
                 'alamat'=>$request->input('alamat')
             ];
+
         Siswa::create($data);
         return redirect('siswa')->with('success','berhasil masuk data yang diinputkan!!');
       

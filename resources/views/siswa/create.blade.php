@@ -18,8 +18,8 @@
       <textarea name="alamat" id="alamat" class="form-control" >{{Session::get('alamat')}}</textarea>
           </div>
           <div class="mb-3">
-            <label for="profil" class="form-label">Foto Profil</label>
-          <input type="file" name="profil" id="profil" class="form-control" >
+            <label for="foto" class="form-label">Foto Profil</label>
+          <input type="foto" name="foto" id="foto" class="form-control" >
               </div>
       <div class="mb-3">
         <button type="submit" class="btn btn-primary">Submit</button>
