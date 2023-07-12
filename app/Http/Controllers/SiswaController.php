@@ -39,12 +39,15 @@ class SiswaController extends Controller
         [
             'nomor_induk'=>'required|numeric',
             'nama'=>'required',
-            'alamat'=>'required'
+            'alamat'=>'required',
+            'foto'=>'required|mimes:jpg,jpeg,png'
         ],[
             'nomor_induk.required'=>'Nomor induk wajib diisi',
             'nomor_induk.numeric'=>'Nomor induk wajib diisi dengan angka',
             'nama.required'=>'Nama wajib diisi',
-            'alamat.required'=>'Alamat wajib diisi'
+            'alamat.required'=>'Alamat wajib diisi',
+            'foto.required'=>'Silahkan Pilih Foto Profil',
+            'foto.mimes'=>'ekstensi foto hanya jpg, jpeg, dan png'
 
         ]);
             $data=[
