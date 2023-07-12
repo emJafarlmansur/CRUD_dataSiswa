@@ -51,6 +51,9 @@ class SiswaController extends Controller
 
         ]);
             $foto_file=$request->file('foto');
+            $foto_ekstensi=$foto_file->extension();
+            $foto_nama=date('ymdhis').".".$foto_ekstensi;
+            $foto_file->move(public_path('foto'),$foto_nama);
             $data=[
                 'nomor_induk'=>$request->input('nomor_induk'),
                 'nama'=>$request->input('nama'),
