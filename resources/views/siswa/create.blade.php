@@ -3,7 +3,7 @@
 
 <a href='/siswa' class="btn btn-secondary " >mbalik</a>
 <h1 style="text-align: center">Create Data Siswa</h1>
-<form action="/siswa" method="POST">
+<form action="/siswa" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
       <label for="nomor_induk" class="form-label">Nomor Induk</label>

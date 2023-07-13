@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 
 class SiswaController extends Controller
@@ -54,10 +55,12 @@ class SiswaController extends Controller
             $foto_ekstensi=$foto_file->extension();
             $foto_nama=date('ymdhis').".".$foto_ekstensi;
             $foto_file->move(public_path('foto'),$foto_nama);
+
             $data=[
                 'nomor_induk'=>$request->input('nomor_induk'),
                 'nama'=>$request->input('nama'),
-                'alamat'=>$request->input('alamat')
+                'alamat'=>$request->input('alamat'),
+                'foto'=>$foto_nama
             ];
 
         Siswa::create($data);
@@ -106,6 +109,27 @@ class SiswaController extends Controller
                 'nama'=>$request->input('nama'),
                 'alamat'=>$request->input('alamat')
             ];
+
+        if($request->hasFile('foto')){
+            $request->validate([
+                'foto'=>'mimes:jpg,jpeg,png'
+            ],[
+                'foto.mimes'=>'Foto hanya berekstensi jpg,jpeg,png'
+            ]);
+            $foto_file=$request->file('foto');
+            $foto_ekstensi=$foto_file->extension();
+            $foto_nama=date('ymdhis').".".$foto_ekstensi;
+            $foto_file->move(public_path('foto'),$foto_nama);
+        }
+
+        
+            $delfoto=Siswa::where('nomor_induk',$id)->first();
+            File::delete(public_path('foto').'/'.$delfoto->foto);
+
+            $data=[
+                'foto'=>'$foto_nama'
+            ];
+
         Siswa::where('nomor_induk',$id)->update($data);
         return redirect('siswa')->with('success','berhasil diupdate datanya!!');
     }
@@ -115,7 +139,10 @@ class SiswaController extends Controller
      */
     public function destroy(string $id)
     {
-       $data=Siswa::where('nomor_induk',$id)->delete();
+
+        $del_foto=Siswa::where('nomor_induk',$id)->first();
+        File::delete(public_path('foto').'/'.$del_foto->foto);
+        Siswa::where('nomor_induk',$id)->delete();
         return redirect('siswa')->with('success','berhasil dihapus datanya!!');
     }
 }
