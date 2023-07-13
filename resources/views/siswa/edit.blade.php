@@ -3,7 +3,7 @@
 
 <a href='/siswa' class="btn btn-secondary">mbalik</a>
 <h1 style="text-align: center">Edit Data Siswa</h1>
-<form action="{{'/siswa/'.$data->nomor_induk}}" method="POST" enctype="multipart/form-data">
+<form action="{{'/siswa/'.$data->nomor_induk}}" method="POST" enctype="multipart/form-data"> <!-- form action merujuk pada fungsi update yang berhubungan dengan @ method put dibawah csrf-->
     @csrf
     @method('put')
     <div class="mb-3">
