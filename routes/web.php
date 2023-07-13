@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeControl;
+use App\Http\Controllers\SesiController;
 use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,10 @@ Route::get('kontak',[HomeControl::class,'kontak']);
 Route::get('dummy',[HomeControl::class,'dummy']);
 
 Route::resource('siswa',SiswaController::class);
+
+Route::get('/sesi',[SesiController::class,'index']);
+Route::post('/sesi/login',[SesiController::class,'login']);
+
 
 
 
