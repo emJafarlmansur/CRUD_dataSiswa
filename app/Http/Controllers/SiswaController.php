@@ -89,12 +89,12 @@ class SiswaController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in storage.    
      */
     public function update(Request $request, string $id)
     {
-        Session::flash('nama',$request->nama);
-        Session::flash('alamat',$request->alamat);
+        // Session::flash('nama',$request->nama);
+        // Session::flash('alamat',$request->alamat);
 
         $request->validate(
         [
@@ -120,15 +120,17 @@ class SiswaController extends Controller
             $foto_ekstensi=$foto_file->extension();
             $foto_nama=date('ymdhis').".".$foto_ekstensi;
             $foto_file->move(public_path('foto'),$foto_nama);
+
+            $delfoto=Siswa::where('nomor_induk',$id)->first();
+            File::delete(public_path('foto').'/'.$delfoto->foto);
+            
+            $data[
+                'foto'  ]=$foto_nama;
+
         }
 
         
-            $delfoto=Siswa::where('nomor_induk',$id)->first();
-            File::delete(public_path('foto').'/'.$delfoto->foto);
-
-            $data=[
-                'foto'=>'$foto_nama'
-            ];
+          
 
         Siswa::where('nomor_induk',$id)->update($data);
         return redirect('siswa')->with('success','berhasil diupdate datanya!!');
