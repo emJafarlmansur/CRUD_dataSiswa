@@ -14,6 +14,9 @@
    <div class="mb-3" >
     <input type="submit" class="btn btn-outline-info">
 </div> 
+<div>
+    <a href="/sesi/register">Register</a>
+</div>
 </form>
     </div>
 @endsection

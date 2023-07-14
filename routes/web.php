@@ -28,7 +28,11 @@ Route::get('dummy',[HomeControl::class,'dummy']);
 Route::resource('siswa',SiswaController::class);
 
 Route::get('/sesi',[SesiController::class,'index']);
+Route::get('/sesi/logout',[SesiController::class,'logout']);
 Route::post('/sesi/login',[SesiController::class,'login']);
+Route::get('/sesi/register',[SesiController::class,'register']);
+Route::post('/sesi/register',[SesiController::class,'create']);
+
 
 
 
